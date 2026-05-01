@@ -13,20 +13,28 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int tabIndex = 0;
+
+  void switchTab(int index) {
+    setState(() {
+      tabIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: tabIndex,
-        children: [HomePage(), CategoriesPage(), FavoritesPage(), CartPage()],
-      ),
+      body: [
+        HomePage(),
+        CategoriesPage(),
+        FavoritesPage(),
+        CartPage(),
+      ][tabIndex],
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.black,
         selectedItemColor: Colors.black,
         selectedIconTheme: IconThemeData(color: Colors.amber),
-        onTap: (index) => setState(() {
-          tabIndex = index;
-        }),
+        onTap: switchTab,
+        currentIndex: tabIndex,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
