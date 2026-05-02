@@ -20,6 +20,10 @@ class _MainLayoutState extends State<MainLayout> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
       return;
     }
+    if(index == 1){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesPage()));
+      return;
+    }
     setState(() {
       tabIndex = index;
     });
