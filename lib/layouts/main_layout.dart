@@ -15,6 +15,11 @@ class _MainLayoutState extends State<MainLayout> {
   int tabIndex = 0;
 
   void switchTab(int index) {
+    if(index == tabIndex) return;
+    if(index == 3){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+      return;
+    }
     setState(() {
       tabIndex = index;
     });
