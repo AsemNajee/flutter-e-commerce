@@ -30,7 +30,7 @@ class ProductCard extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ),
                   image: DecorationImage(
-                    image: Image.asset("assets/image.png").image,
+                    image: Image.asset(product.imagePath).image,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -46,7 +46,7 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
-                    "20% OFF",
+                    "${product.discount}%",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,
@@ -59,8 +59,8 @@ class ProductCard extends StatelessWidget {
                 top: 10,
                 right: 10,
                 child: Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
+                  product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: product.isFavorite ? Colors.red : Colors.grey,
                 ),
               ),
             ],
@@ -69,7 +69,7 @@ class ProductCard extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Text(
-              "Category",
+              product.category,
               style:
                   TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.w500),
             ),
@@ -77,7 +77,7 @@ class ProductCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              "Product Title",
+              product.title,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
           ),
@@ -87,7 +87,7 @@ class ProductCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  "\$100",
+                  product.price.toString(),
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.grey,
@@ -96,7 +96,7 @@ class ProductCard extends StatelessWidget {
                 ),
                 SizedBox(width: 5),
                 Text(
-                  "\$80",
+                  "\$${(product.price - (product.price * product.discount / 100)).toStringAsFixed(2)} ",
                   style: TextStyle(
                     fontSize: 14,
                     color: Colors.green,
